@@ -16,34 +16,103 @@ public class Operaciones {
 
 	}
 
-	public double cambioDivisas(Moneda moneda_1, Moneda moneda_2) {
-		
+	public double cambioDivisas(Moneda moneda_1, int cantidadMoneda1, Moneda moneda_2) {
+
 		double valor_final = 0.0;
-		
+
 		switch (moneda_1.getType()) {
 		case "euro":
-			
-			
-			
-			return valor_final;
+			switch (moneda_2.getType()) {
+			case "dolar":
+				return cantidadMoneda1 * moneda_2.getEuro().getValue_dolar();
+			case "peso":
+				return cantidadMoneda1 * moneda_2.getEuro().getValue_peso();
+			case "libra":
+				return cantidadMoneda1 * moneda_2.getEuro().getValue_libra();
+			case "rublo":
+				return cantidadMoneda1 * moneda_2.getEuro().getValue_rublo();
+			default:
+				break;
+			}
+		
 		case "dolar":
+			switch (moneda_2.getType()) {
+			case "euro":
+				return cantidadMoneda1 * moneda_2.getDolar().getValue_euro();
+			case "peso":
+				return cantidadMoneda1 * moneda_2.getDolar().getValue_peso();
+			case "libra":
+				return cantidadMoneda1 * moneda_2.getDolar().getValue_libra();
+			case "rublo":
+				return cantidadMoneda1 * moneda_2.getDolar().getValue_rublo();
+			default:
+				break;
+			}
 			
-			return valor_final;
 		case "libra":
-			
-			
-			return valor_final;
+			switch (moneda_2.getType()) {
+			case "euro":
+				return cantidadMoneda1 * moneda_2.getLibra().getValue_euro();
+			case "peso":
+				return cantidadMoneda1 * moneda_2.getLibra().getValue_peso();
+			case "dolar":
+				return cantidadMoneda1 * moneda_2.getLibra().getValue_dolar();
+			case "rublo":
+				return cantidadMoneda1 * moneda_2.getLibra().getValue_rublo();
+			default:
+				break;
+			}
+		
 		case "peso":
+			switch (moneda_2.getType()) {
+			case "euro":
+				return cantidadMoneda1 * moneda_2.getPeso().getValue_euro();
+			case "libra":
+				return cantidadMoneda1 * moneda_2.getPeso().getValue_libra();
+			case "dolar":
+				return cantidadMoneda1 * moneda_2.getPeso().getValue_dolar();
+			case "rublo":
+				return cantidadMoneda1 * moneda_2.getPeso().getValue_rublo();
+			default:
+				break;
+			}
 			
-			
-			return valor_final;
 		case "rublo":
-	
-			return valor_final;
+			switch (moneda_2.getType()) {
+			case "euro":
+				return cantidadMoneda1 * moneda_2.getRublo().getValue_euro();
+			case "libra":
+				return cantidadMoneda1 * moneda_2.getRublo().getValue_libra();
+			case "dolar":
+				return cantidadMoneda1 * moneda_2.getRublo().getValue_dolar();
+			case "rublo":
+				return cantidadMoneda1 * moneda_2.getRublo().getValue_peso();
+			default:
+				break;
+			}
 		default:
 			return 0.0;
 		}
-		
+
 	}
+	
+	/*public double moneda2 (int cantidadMoneda, Moneda moneda) {
+	
+		switch (moneda.getType()) {
+		case"euro":
+			return cantidadMoneda * moneda.getEuro().getValue_libra()
+		case "dolar":
+			return cantidadMoneda * moneda.getEuro().getValue_dolar();
+		case "peso":
+			return cantidadMoneda * moneda.getEuro().getValue_peso();
+		case "libra":
+			return cantidadMoneda * moneda.getEuro().getValue_libra();
+		case "rublo":
+			return cantidadMoneda * moneda.getEuro().getValue_rublo();
+		default:
+			break;
+		}
+		return 0.0;
+	}*/
 
 }

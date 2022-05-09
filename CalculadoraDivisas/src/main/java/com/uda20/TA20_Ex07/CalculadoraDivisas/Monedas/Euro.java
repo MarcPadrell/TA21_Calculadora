@@ -2,7 +2,7 @@ package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Euro {
 	
-	private final double value_dolar = 1.5;
+	private final double value_dolar = 1.05;
 	private final double value_libra = 0.85;
 	private final double value_peso = 122.48;
 	private final double value_rublo = 73.08;
