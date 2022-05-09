@@ -1,7 +1,7 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Euro {
-	
+	//Definir e inicializar atributos de equivalencia del euro mediante constantes
 	private final double value_dolar = 1.5;
 	private final double value_libra = 0.85;
 	private final double value_peso = 122.48;
@@ -12,6 +12,7 @@ public class Euro {
 	public Euro() {
 	}
 
+	//Constructor
 	public double getValue_dolar() {
 		return value_dolar;
 	}

@@ -1,7 +1,7 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Rublo{
-	
+	//Definir e inicializar atributos de equivalencia del rublo mediante constantes
 	private final double value_dolar = 0.014;
 	private final double value_euro = 0.014;
 	private final double value_libra = 0.012;

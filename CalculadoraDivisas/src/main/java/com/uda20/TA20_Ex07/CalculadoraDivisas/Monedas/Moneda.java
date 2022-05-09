@@ -1,7 +1,7 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Moneda {
-
+	//Crear objetos por cada clase de moneda
 	private Dolar dolar;
 	private Euro euro;
 	private Libra libra;
@@ -20,6 +20,7 @@ public class Moneda {
 
 	}
 
+	//Constructor
 	public Dolar getDolar() {
 		return dolar;
 	}

@@ -1,7 +1,7 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Libra {
-	
+	//Definir e inicializar atributos de equivalencia la libra mediante constantes
 	private final double value_dolar = 1.23;
 	private final double value_euro = 1.17;
 	private final double value_peso = 143.52;

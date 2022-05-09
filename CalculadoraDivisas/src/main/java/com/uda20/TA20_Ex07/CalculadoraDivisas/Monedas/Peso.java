@@ -1,7 +1,7 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Peso {
-	
+	//Definir e inicializar atributos de equivalencia del peso mediante constantes
 	private final double value_dolar = 0.0086;
 	private final double value_euro = 0.0082;
 	private final double value_libra = 0.007;

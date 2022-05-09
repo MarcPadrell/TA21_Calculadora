@@ -14,9 +14,8 @@ public class Frame extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+	//Lanzar la aplicación
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -30,9 +29,8 @@ public class Frame extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Crear el Frame
+	
 	@SuppressWarnings("unchecked")
 	public Frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

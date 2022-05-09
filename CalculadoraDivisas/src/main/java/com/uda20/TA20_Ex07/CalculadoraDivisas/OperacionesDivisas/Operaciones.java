@@ -16,14 +16,13 @@ public class Operaciones {
 
 	}
 
+	//Método para hacer la equivalencia entre dos monedas
 	public double cambioDivisas(Moneda moneda_1, Moneda moneda_2) {
 		
 		double valor_final = 0.0;
 		
 		switch (moneda_1.getType()) {
-		case "euro":
-			
-			
+		case "euro":			
 			
 			return valor_final;
 		case "dolar":
