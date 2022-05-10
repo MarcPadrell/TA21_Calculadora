@@ -1,10 +1,16 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Interficie;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.uda20.TA20_Ex07.CalculadoraDivisas.OperacionesDivisas.Operaciones;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -14,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.font.TextAttribute;
 
 public class Frame extends JFrame {
 
@@ -21,6 +28,15 @@ public class Frame extends JFrame {
 	private JTextField tf_divisa1;
 	private JTextField tf_divisa2;
 	private boolean divisa1focus;
+	private JComboBox desplegableDivisa1;
+	private JComboBox desplegableDivisa2;
+	private JLabel lblMostrarCambioDivisas;
+	private String simbolo_1;
+	private String simbolo_2;
+	private String numeros_added_div1 = "";
+	private String numeros_added_div2 = "";
+	//private String numeros_added_combo = "";
+	//private String simbolo_ComboBox= "";
 
 	/**
 	 * Launch the application.
@@ -55,7 +71,18 @@ public class Frame extends JFrame {
 		lblMoneda.setBounds(10, 10, 90, 32);
 		contentPane.add(lblMoneda);
 
-		JComboBox desplegableDivisa1 = new JComboBox();
+		desplegableDivisa1 = new JComboBox();
+		desplegableDivisa1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				/*simbolo_ComboBox = simboloMoneda((String) desplegableDivisa1.getSelectedItem());
+				
+				numeros_added_combo = numeros_added_combo + simbolo_ComboBox + "";
+				
+				tf_divisa1.setText(numeros_added_combo);*/
+				
+			}
+		});
 		desplegableDivisa1.setBounds(96, 155, 165, 21);
 		contentPane.add(desplegableDivisa1);
 		desplegableDivisa1.addItem("Europa - Euro");
@@ -64,7 +91,7 @@ public class Frame extends JFrame {
 		desplegableDivisa1.addItem("Argentina - Peso");
 		desplegableDivisa1.addItem("Rusia - Rublo");
 
-		JComboBox desplegableDivisa2 = new JComboBox();
+		desplegableDivisa2 = new JComboBox();
 		desplegableDivisa2.setBounds(96, 318, 165, 21);
 		contentPane.add(desplegableDivisa2);
 		desplegableDivisa2.addItem("Europa - Euro");
@@ -72,19 +99,25 @@ public class Frame extends JFrame {
 		desplegableDivisa2.addItem("UK - Libras");
 		desplegableDivisa2.addItem("Argentina - Peso");
 		desplegableDivisa2.addItem("Rusia - Rublo");
+		desplegableDivisa2.setSelectedIndex(1); // America is selected for default
 
-		JLabel lblMostrarCambioDivisas = new JLabel("Igualación \"=\"");
+		lblMostrarCambioDivisas = new JLabel("Igualación \"=\"");
 		lblMostrarCambioDivisas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMostrarCambioDivisas.setBounds(100, 430, 99, 21);
 		contentPane.add(lblMostrarCambioDivisas);
 
-		JLabel lblActualizado = new JLabel("Actualizado el \"fecha\" a las \"hora\"");
+		JLabel lblActualizado = new JLabel("");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); // Ponemos la fecha actual
+		lblActualizado.setText("Actualizado el " + dtf.format(LocalDateTime.now()));
 		lblActualizado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblActualizado.setBounds(100, 461, 264, 21);
 		contentPane.add(lblActualizado);
 
 		JLabel lblActualizarTipos = new JLabel("Actualizar tipos");
-		lblActualizarTipos.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Font font = new Font("Tahoma", Font.PLAIN, 15);
+		Map attributes = font.getAttributes();
+		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON); // Subrayamos el JLabel
+		lblActualizarTipos.setFont(font.deriveFont(attributes));
 		lblActualizarTipos.setBounds(100, 492, 140, 21);
 		contentPane.add(lblActualizarTipos);
 
@@ -275,11 +308,55 @@ public class Frame extends JFrame {
 
 	public void accionBotonNumero(int numero) {
 		controlarSiEs0();
-		if (divisa1focus) {
-			tf_divisa1.setText(tf_divisa1.getText() + numero);
+
+		if (divisa1focus) { // Divisa 1 clicada
+			
+			tf_divisa1.setText(""); // Eliminamos todo el texto para poder poner la concatenacion de numeros con su simbolo
+
+			numeros_added_div1 = numeros_added_div1 + numero + "";
+
+			String nameDivisa_1 = (String) desplegableDivisa1.getSelectedItem(); // Cogemos el item seleccionado en el combobox
+
+			simbolo_1 = simboloMoneda(nameDivisa_1);
+
+			tf_divisa1.setText(tf_divisa1.getText() + numeros_added_div1 + " " + simbolo_1); // Añadimos la concatenacion con el simbolo
+
+			
 		} else {
-			tf_divisa2.setText(tf_divisa2.getText() + numero);
+			
+			tf_divisa2.setText("");
+			
+			numeros_added_div2 = numeros_added_div2 + numero + "";
+
+			String nameDivisa_2 = (String) desplegableDivisa2.getSelectedItem();
+
+			simbolo_2 = simboloMoneda(nameDivisa_2);
+
+			tf_divisa2.setText(tf_divisa2.getText() + numeros_added_div2 + " " + simbolo_2); // Divisa 2 clicada
+
 		}
+
+		lblMostrarCambioDivisas.setText("1" + simbolo_1 + " = " + simbolo_2); // Falta el valor !!!!!!!!!!!!
+
+	}
+
+	public String simboloMoneda(String type) {
+
+		switch (type) {
+		case "Europa - Euro":
+			return "€";
+		case "America - Dolar":
+			return "$";
+		case "UK - Libras":
+			return "£";
+		case "Argentina - Peso":
+			return "AR $";
+		case "Rusia - Rublo":
+			return "₽";
+		default:
+			return "";
+		}
+
 	}
 
 	public void accionBotonEliminar() {
@@ -294,10 +371,10 @@ public class Frame extends JFrame {
 	public String borrarUltimoChar(String text) {
 		if (text.length() > 1) {
 			return text.substring(0, text.length() - 1);
-		}else {
+		} else {
 			return "0";
 		}
-		
+
 	}
 
 	public void anadirComa(String text) {

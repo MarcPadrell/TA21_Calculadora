@@ -18,8 +18,6 @@ public class Operaciones {
 
 	public double cambioDivisas(Moneda moneda_1, int cantidadMoneda1, Moneda moneda_2) {
 
-		double valor_final = 0.0;
-
 		switch (moneda_1.getType()) {
 		case "euro":
 			switch (moneda_2.getType()) {
@@ -34,7 +32,7 @@ public class Operaciones {
 			default:
 				break;
 			}
-		
+
 		case "dolar":
 			switch (moneda_2.getType()) {
 			case "euro":
@@ -48,7 +46,7 @@ public class Operaciones {
 			default:
 				break;
 			}
-			
+
 		case "libra":
 			switch (moneda_2.getType()) {
 			case "euro":
@@ -62,7 +60,7 @@ public class Operaciones {
 			default:
 				break;
 			}
-		
+
 		case "peso":
 			switch (moneda_2.getType()) {
 			case "euro":
@@ -76,7 +74,7 @@ public class Operaciones {
 			default:
 				break;
 			}
-			
+
 		case "rublo":
 			switch (moneda_2.getType()) {
 			case "euro":
@@ -95,24 +93,18 @@ public class Operaciones {
 		}
 
 	}
+
 	
-	/*public double moneda2 (int cantidadMoneda, Moneda moneda) {
-	
-		switch (moneda.getType()) {
-		case"euro":
-			return cantidadMoneda * moneda.getEuro().getValue_libra()
-		case "dolar":
-			return cantidadMoneda * moneda.getEuro().getValue_dolar();
-		case "peso":
-			return cantidadMoneda * moneda.getEuro().getValue_peso();
-		case "libra":
-			return cantidadMoneda * moneda.getEuro().getValue_libra();
-		case "rublo":
-			return cantidadMoneda * moneda.getEuro().getValue_rublo();
-		default:
-			break;
-		}
-		return 0.0;
-	}*/
+
+	/*
+	 * public double moneda2 (int cantidadMoneda, Moneda moneda) {
+	 * 
+	 * switch (moneda.getType()) { case"euro": return cantidadMoneda *
+	 * moneda.getEuro().getValue_libra() case "dolar": return cantidadMoneda *
+	 * moneda.getEuro().getValue_dolar(); case "peso": return cantidadMoneda *
+	 * moneda.getEuro().getValue_peso(); case "libra": return cantidadMoneda *
+	 * moneda.getEuro().getValue_libra(); case "rublo": return cantidadMoneda *
+	 * moneda.getEuro().getValue_rublo(); default: break; } return 0.0; }
+	 */
 
 }
