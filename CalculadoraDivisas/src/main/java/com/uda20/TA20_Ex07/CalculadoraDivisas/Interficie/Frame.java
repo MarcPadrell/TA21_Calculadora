@@ -1,19 +1,26 @@
 package com.uda20.TA20_Ex07.CalculadoraDivisas.Interficie;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.font.TextAttribute;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas.Moneda;
+import com.uda20.TA20_Ex07.CalculadoraDivisas.OperacionesDivisas.Operaciones;
 
 public class Frame extends JFrame {
 
@@ -21,6 +28,8 @@ public class Frame extends JFrame {
 	private JTextField tf_divisa1;
 	private JTextField tf_divisa2;
 	private boolean divisa1focus;
+	private Operaciones operaciones;
+	private Moneda moneda1, moneda2;
 
 	/**
 	 * Launch the application.
@@ -49,44 +58,75 @@ public class Frame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.operaciones = new Operaciones();
+		moneda1 = new Moneda();
+		moneda1.setType("euro");
+		moneda2 = new Moneda();
+		moneda2.setType("dolar");
 
 		JLabel lblMoneda = new JLabel("Moneda");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblMoneda.setBounds(10, 10, 90, 32);
 		contentPane.add(lblMoneda);
 
-		JComboBox desplegableDivisa1 = new JComboBox();
+		String[] divisas = { "Europa - Euro", "America - Dolar", "UK - Libras", "Argentina - Peso", "Rusia - Rublo" };
+		JComboBox desplegableDivisa1 = new JComboBox(divisas);
 		desplegableDivisa1.setBounds(96, 155, 165, 21);
 		contentPane.add(desplegableDivisa1);
-		desplegableDivisa1.addItem("Europa - Euro");
-		desplegableDivisa1.addItem("America - Dolar");
-		desplegableDivisa1.addItem("UK - Libras");
-		desplegableDivisa1.addItem("Argentina - Peso");
-		desplegableDivisa1.addItem("Rusia - Rublo");
+		desplegableDivisa1.setSelectedIndex(0);
+		desplegableDivisa1.addActionListener(new ActionListener() {
 
-		JComboBox desplegableDivisa2 = new JComboBox();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (desplegableDivisa1.getSelectedIndex() == 0) {
+					moneda1.setType("euro");
+				}
+				if (desplegableDivisa1.getSelectedIndex() == 1) {
+					moneda1.setType("dolar");
+				}
+				if (desplegableDivisa1.getSelectedIndex() == 2) {
+					moneda1.setType("libra");
+				}
+				if (desplegableDivisa1.getSelectedIndex() == 3) {
+					moneda1.setType("peso");
+				}
+				if (desplegableDivisa1.getSelectedIndex() == 4) {
+					moneda1.setType("rublo");
+				}
+
+			}
+		});
+
+		JComboBox desplegableDivisa2 = new JComboBox(divisas);
 		desplegableDivisa2.setBounds(96, 318, 165, 21);
 		contentPane.add(desplegableDivisa2);
-		desplegableDivisa2.addItem("Europa - Euro");
-		desplegableDivisa2.addItem("America - Dolar");
-		desplegableDivisa2.addItem("UK - Libras");
-		desplegableDivisa2.addItem("Argentina - Peso");
-		desplegableDivisa2.addItem("Rusia - Rublo");
+		desplegableDivisa2.setSelectedIndex(1);
+		desplegableDivisa2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (desplegableDivisa2.getSelectedIndex() == 0) {
+					moneda2.setType("euro");
+				}
+				if (desplegableDivisa2.getSelectedIndex() == 1) {
+					moneda2.setType("dolar");
+				}
+				if (desplegableDivisa2.getSelectedIndex() == 2) {
+					moneda2.setType("libra");
+				}
+				if (desplegableDivisa2.getSelectedIndex() == 3) {
+					moneda2.setType("peso");
+				}
+				if (desplegableDivisa2.getSelectedIndex() == 4) {
+					moneda2.setType("rublo");
+				}
+
+		}});
 
 		JLabel lblMostrarCambioDivisas = new JLabel("Igualación \"=\"");
 		lblMostrarCambioDivisas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMostrarCambioDivisas.setBounds(100, 430, 99, 21);
 		contentPane.add(lblMostrarCambioDivisas);
-
-		JLabel lblActualizado = new JLabel("Actualizado el \"fecha\" a las \"hora\"");
-		lblActualizado.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblActualizado.setBounds(100, 461, 264, 21);
-		contentPane.add(lblActualizado);
-
-		JLabel lblActualizarTipos = new JLabel("Actualizar tipos");
-		lblActualizarTipos.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblActualizarTipos.setBounds(100, 492, 140, 21);
-		contentPane.add(lblActualizarTipos);
 
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -112,6 +152,7 @@ public class Frame extends JFrame {
 		btn_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(8);
+				calcularDivisas();
 			}
 		});
 		btn_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -122,6 +163,7 @@ public class Frame extends JFrame {
 		btn_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(9);
+				calcularDivisas();
 			}
 		});
 		btn_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -132,6 +174,7 @@ public class Frame extends JFrame {
 		btn_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(7);
+				calcularDivisas();
 			}
 		});
 		btn_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -142,6 +185,7 @@ public class Frame extends JFrame {
 		btn_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(6);
+				calcularDivisas();
 			}
 		});
 		btn_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -152,6 +196,7 @@ public class Frame extends JFrame {
 		btn_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(5);
+				calcularDivisas();
 			}
 		});
 		btn_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -162,6 +207,7 @@ public class Frame extends JFrame {
 		btn_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(4);
+				calcularDivisas();
 			}
 		});
 		btn_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -172,6 +218,7 @@ public class Frame extends JFrame {
 		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(3);
+				calcularDivisas();
 			}
 		});
 		btn_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -182,6 +229,7 @@ public class Frame extends JFrame {
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(2);
+				calcularDivisas();
 			}
 		});
 		btn_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -192,6 +240,7 @@ public class Frame extends JFrame {
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(1);
+				calcularDivisas();
 			}
 		});
 		btn_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -202,6 +251,7 @@ public class Frame extends JFrame {
 		btn_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				accionBotonNumero(0);
+				calcularDivisas();
 			}
 		});
 		btn_0.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -216,6 +266,7 @@ public class Frame extends JFrame {
 				} else {
 					anadirComa(tf_divisa2.getText().toString());
 				}
+
 			}
 		});
 		btn_coma.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -236,6 +287,7 @@ public class Frame extends JFrame {
 		tf_divisa1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				tf_divisa1.setText("0");
 			}
 
 			@Override
@@ -261,6 +313,7 @@ public class Frame extends JFrame {
 		tf_divisa2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
+				tf_divisa2.setText("0");
 			}
 
 			@Override
@@ -271,6 +324,26 @@ public class Frame extends JFrame {
 		tf_divisa2.setColumns(10);
 		tf_divisa2.setBounds(96, 272, 165, 32);
 		contentPane.add(tf_divisa2);
+
+		lblMostrarCambioDivisas = new JLabel("Igualación \"=\"");
+		lblMostrarCambioDivisas.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblMostrarCambioDivisas.setBounds(100, 430, 99, 21);
+		contentPane.add(lblMostrarCambioDivisas);
+
+		JLabel lblActualizado = new JLabel("");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); // Ponemos la fecha actual
+		lblActualizado.setText("Actualizado el " + dtf.format(LocalDateTime.now()));
+		lblActualizado.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblActualizado.setBounds(100, 461, 264, 21);
+		contentPane.add(lblActualizado);
+
+		JLabel lblActualizarTipos = new JLabel("Actualizar tipos");
+		Font font = new Font("Tahoma", Font.PLAIN, 15);
+		Map attributes = font.getAttributes();
+		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON); // Subrayamos el JLabel
+		lblActualizarTipos.setFont(font.deriveFont(attributes));
+		lblActualizarTipos.setBounds(100, 492, 140, 21);
+		contentPane.add(lblActualizarTipos);
 	}
 
 	public void accionBotonNumero(int numero) {
@@ -294,10 +367,10 @@ public class Frame extends JFrame {
 	public String borrarUltimoChar(String text) {
 		if (text.length() > 1) {
 			return text.substring(0, text.length() - 1);
-		}else {
+		} else {
 			return "0";
 		}
-		
+
 	}
 
 	public void anadirComa(String text) {
@@ -330,8 +403,25 @@ public class Frame extends JFrame {
 	}
 
 	public void borrarTodo() {
-		tf_divisa1.setText("");
-		tf_divisa2.setText("");
+		tf_divisa1.setText("0");
+		tf_divisa2.setText("0");
 	}
 
+	public void calcularDivisas() {
+		if (divisa1focus) {
+			double result = operaciones.cambioDivisas(moneda1, Double.parseDouble((tf_divisa1.getText().toString())),
+					moneda2);
+			tf_divisa2.setText("" + Math.round(result * 100d) / 100d);
+		} else {
+			double result = operaciones.cambioDivisas(moneda2, Double.parseDouble((tf_divisa2.getText().toString())),
+					moneda1);
+			tf_divisa1.setText("" + Math.round(result * 100d) / 100d);
+		}
+	}
+
+	/*
+	 * switch (numero) { case 1: type = "euro"; break; case 2: type = "dolar";
+	 * break; case 3: type = "libra"; break; case 4: type = "peso"; break; case 5:
+	 * type = "rublo"; break; default: break;
+	 */
 }

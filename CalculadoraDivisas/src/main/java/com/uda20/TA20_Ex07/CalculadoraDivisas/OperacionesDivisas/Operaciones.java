@@ -16,7 +16,7 @@ public class Operaciones {
 
 	}
 
-	public double cambioDivisas(Moneda moneda_1, int cantidadMoneda1, Moneda moneda_2) {
+	public double cambioDivisas(Moneda moneda_1, double cantidadMoneda1, Moneda moneda_2) {
 
 		double valor_final = 0.0;
 
