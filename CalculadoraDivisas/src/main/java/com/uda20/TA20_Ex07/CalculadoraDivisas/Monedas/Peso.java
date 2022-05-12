@@ -7,8 +7,6 @@ public class Peso {
 	private final double value_libra = 0.007;
 	private final double value_rublo = 0.6;
 	
-	private int id = 4;
-
 	
 	public Peso() {
 		
@@ -33,13 +31,7 @@ public class Peso {
 		return value_rublo;
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	
 }

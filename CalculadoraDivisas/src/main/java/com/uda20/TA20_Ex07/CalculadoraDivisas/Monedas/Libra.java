@@ -6,9 +6,7 @@ public class Libra {
 	private final double value_euro = 1.17;
 	private final double value_peso = 143.52;
 	private final double value_rublo = 85.54;
-	
-	private int id = 3;
-	
+
 	public Libra() {
 		
 	}
@@ -29,12 +27,6 @@ public class Libra {
 		return value_rublo;
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}	
 	
 }

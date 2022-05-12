@@ -27,7 +27,7 @@ public class Frame extends JFrame {
 	private JPanel contentPane;
 	private JTextField tf_divisa1;
 	private JTextField tf_divisa2;
-	private boolean divisa1focus;
+	protected boolean divisa1focus;
 	private Operaciones operaciones;
 	private Moneda moneda1, moneda2;
 
@@ -419,9 +419,18 @@ public class Frame extends JFrame {
 		}
 	}
 
+	public boolean isDivisa1focus() {
+		return divisa1focus;
+	}
+
+	public void setDivisa1focus(boolean divisa1focus) {
+		this.divisa1focus = divisa1focus;
+	}
+
 	/*
 	 * switch (numero) { case 1: type = "euro"; break; case 2: type = "dolar";
 	 * break; case 3: type = "libra"; break; case 4: type = "peso"; break; case 5:
 	 * type = "rublo"; break; default: break;
 	 */
+	
 }

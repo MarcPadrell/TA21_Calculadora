@@ -7,9 +7,7 @@ public class Rublo{
 	private final double value_libra = 0.012;
 	private final double value_peso = 1.68;
 	
-	private int id = 5;
 
-	
 	public Rublo() {
 		
 	}
@@ -30,12 +28,6 @@ public class Rublo{
 		return value_peso;
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 }

@@ -7,8 +7,6 @@ public class Dolar {
 	private final double value_peso = 116.24;
 	private final double value_rublo = 69.35;
 	
-	private int id = 2;
-	
 	public Dolar() {
 		
 	}
@@ -29,13 +27,6 @@ public class Dolar {
 		return value_rublo;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	
 }

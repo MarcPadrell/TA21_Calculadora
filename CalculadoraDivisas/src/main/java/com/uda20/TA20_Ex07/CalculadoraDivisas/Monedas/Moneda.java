@@ -2,11 +2,11 @@ package com.uda20.TA20_Ex07.CalculadoraDivisas.Monedas;
 
 public class Moneda {
 
-	private Dolar dolar;
-	private Euro euro;
-	private Libra libra;
-	private Peso peso;
-	private Rublo rublo;
+	protected Dolar dolar;
+	protected Euro euro;
+	protected Libra libra;
+	protected Peso peso;
+	protected Rublo rublo;
 
 	private String type;
 
@@ -24,41 +24,28 @@ public class Moneda {
 		return dolar;
 	}
 
-	public void setDolar(Dolar dolar) {
-		this.dolar = dolar;
-	}
+
 
 	public Euro getEuro() {
 		return euro;
 	}
 
-	public void setEuro(Euro euro) {
-		this.euro = euro;
-	}
+
 
 	public Libra getLibra() {
 		return libra;
 	}
 
-	public void setLibra(Libra libra) {
-		this.libra = libra;
-	}
 
 	public Peso getPeso() {
 		return peso;
 	}
 
-	public void setPeso(Peso peso) {
-		this.peso = peso;
-	}
-
+	
 	public Rublo getRublo() {
 		return rublo;
 	}
 
-	public void setRublo(Rublo rublo) {
-		this.rublo = rublo;
-	}
 
 	public void escogerMoneda(int numero) {
 
@@ -70,10 +57,10 @@ public class Moneda {
 			type = "dolar";
 			break;
 		case 3:
-			type = "libra";
+			type = "peso";
 			break;
 		case 4:
-			type = "peso";
+			type = "libra";
 			break;
 		case 5:
 			type = "rublo";
